@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>✨ Shubh Deepawali | Interactive Festival Journey ✨</title>
+  <meta name="description" content="Experience an interactive Diwali celebration journey! Light sacred diyas, adorn colorful rangoli, savor festive sweets, burst sparklers, and receive your personalized Diwali greeting!">
+  <meta name="theme-color" content="#0a0514">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="✨ Happy Diwali! Shubh Deepawali ✨">
+  <meta property="og:description" content="Open your interactive Diwali celebration: light diyas, splash colors, taste sweets, and burst crackers!">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Marcellus&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Ambient Background Glow & Canvases -->
+  <div id="ambient-room-glow" class="ambient-room-glow"></div>
+  <canvas id="bg-canvas" class="fullscreen-canvas bg-canvas"></canvas>
+  <canvas id="cracker-canvas" class="fullscreen-canvas cracker-canvas"></canvas>
+
+  <!-- Sparkler Cursor Wand (Follows touch/pointer) -->
+  <div id="sparkler-cursor" class="sparkler-cursor" aria-hidden="true">
+    <div class="sparkler-tip"></div>
+    <div class="sparkler-rod"></div>
+  </div>
+
+  <!-- Mobile Viewport Shell (100dvh) -->
+  <div class="app-viewport">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <span class="festival-badge">✨ दीपपर्व 2026</span>
+        <h1 class="header-title">Shubh Deepawali</h1>
+      </div>
+      <div class="header-actions">
+        <button id="sky-fireworks-btn" class="header-icon-btn active" title="Toggle Sky Fireworks in Background" aria-label="Toggle Sky Fireworks">🎆</button>
+        <button id="sound-toggle-btn" class="header-icon-btn" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+          <span id="sound-waves" class="sound-wave-bars">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <button id="fullscreen-btn" class="header-icon-btn" aria-label="Toggle Fullscreen">⤢</button>
+      </div>
+    </header>
+
+    <!-- Top Workflow Step Progress Bar (5 Steps) -->
+    <nav class="workflow-step-progress" aria-label="Celebration Journey Progress">
+      <button class="step-nav-pill active" data-step="1">
+        <span class="step-num">1</span>
+        <span class="step-icon">🪔</span>
+        <span class="step-title">Light</span>
+      </button>
+      <div class="step-line-sep"></div>
+      <button class="step-nav-pill" data-step="2">
+        <span class="step-num">2</span>
+        <span class="step-icon">🎨</span>
+        <span class="step-title">Colors</span>
+      </button>
+      <div class="step-line-sep"></div>
+      <button class="step-nav-pill" data-step="3">
+        <span class="step-num">3</span>
+        <span class="step-icon">🍬</span>
+        <span class="step-title">Mithai</span>
+      </button>
+      <div class="step-line-sep"></div>
+      <button class="step-nav-pill" data-step="4">
+        <span class="step-num">4</span>
+        <span class="step-icon">🎆</span>
+        <span class="step-title">Spark</span>
+      </button>
+      <div class="step-line-sep"></div>
+      <button class="step-nav-pill" data-step="5">
+        <span class="step-num">5</span>
+        <span class="step-icon">💌</span>
+        <span class="step-title">Blessing</span>
+      </button>
+    </nav>
+
+    <!-- Main Workflow Stage: 5 Progressive Steps -->
+    <main id="workflow-container" class="workflow-carousel-container">
+      
+      <!-- ================= STEP 1: SACRED DIYA ================= -->
+      <section id="step-1" class="workflow-step-card active" data-step="1">
+        <div class="step-header-wrap">
+          <span class="step-kicker">चरण १ • पवित्र दीपदान</span>
+          <h2 class="step-headline">Kindle the Sacred Light</h2>
+        </div>
+        <div id="step-diya-content" class="step-dynamic-body">
+          <!-- Populated by diyas.js -->
+        </div>
+      </section>
+
+      <!-- ================= STEP 2: RANGOLI MANDALA ================= -->
+      <section id="step-2" class="workflow-step-card" data-step="2">
+        <div class="step-header-wrap">
+          <span class="step-kicker">चरण २ • रंगोली कला</span>
+          <h2 class="step-headline">Adorn with Colors</h2>
+        </div>
+        <div id="step-rangoli-content" class="step-dynamic-body">
+          <!-- Populated by rangoli.js -->
+        </div>
+      </section>
+
+      <!-- ================= STEP 3: MITHAI SWEETS ================= -->
+      <section id="step-3" class="workflow-step-card" data-step="3">
+        <div class="step-header-wrap">
+          <span class="step-kicker">चरण ३ • शुभ मिष्ठान्न</span>
+          <h2 class="step-headline">Taste the Sweetness</h2>
+        </div>
+        <div id="step-sweets-content" class="step-dynamic-body">
+          <!-- Populated by sweets.js -->
+        </div>
+      </section>
+
+      <!-- ================= STEP 4: SPARKLERS & FIREWORKS ================= -->
+      <section id="step-4" class="workflow-step-card" data-step="4">
+        <div class="step-header-wrap">
+          <span class="step-kicker">चरण ४ • पावन आतिशबाजी</span>
+          <h2 class="step-headline">Spark the Night Sky</h2>
+        </div>
+        <div id="step-crackers-content" class="step-dynamic-body">
+          <p class="step-guide-text">✨ Drag your finger to draw with the Phooljhadi, or launch rockets!</p>
+          <div id="step-cracker-stage" class="step-cracker-stage">
+            <div class="sky-silhouette"></div>
+            <div class="stage-touch-prompt">👆 Touch & drag to paint fiery sparks!</div>
+          </div>
+          <div class="cracker-step-btns">
+            <button id="launch-sky-rocket-btn" class="action-btn-gold">
+              <span>🚀 Burst Sky Rocket</span>
+            </button>
+            <button id="burst-finale-btn" class="action-btn-outline">
+              <span>🌟 Grand Finale Show</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STEP 5: GRAND BLESSING & CARD ================= -->
+      <section id="step-5" class="workflow-step-card" data-step="5">
+        <div class="step-header-wrap">
+          <span class="step-kicker">चरण ५ • शुभकामना पत्र</span>
+          <h2 class="step-headline">Your Diwali Blessing</h2>
+        </div>
+        <div id="step-card-content" class="step-dynamic-body">
+          <!-- Populated by card.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar: Back & Next Step Buttons -->
+    <footer class="workflow-bottom-bar">
+      <button id="workflow-prev-btn" class="nav-control-btn btn-prev" style="visibility: hidden;">
+        <span>← Back</span>
+      </button>
+      <button id="workflow-next-btn" class="nav-control-btn btn-next action-btn-gold">
+        <span id="next-btn-text">Next: Adorn Rangoli ➔</span>
+      </button>
+    </footer>
+  </div>
+
+  <!-- Global Toast Notification -->
+  <div id="global-toast" class="global-toast" role="status" aria-live="polite"></div>
+
+  <!-- Intro Screen Gate / Curtain -->
+  <div id="intro-curtain-overlay" class="intro-curtain-overlay">
+    <div class="intro-card-inner">
+      <div class="intro-floating-diya">
+        <div class="intro-flame"></div>
+        <div class="intro-clay-body">🪔</div>
+      </div>
+      <span class="intro-badge">✨ दीपपर्व शुभकामना ✨</span>
+      <h2 class="intro-headline">Shubh Deepawali</h2>
+      <p class="intro-lead">
+        Step into an interactive celebration of light, colors, sweets, and heartfelt blessings.
+      </p>
+      <button id="enter-celebration-btn" class="action-btn-gold intro-enter-btn">
+        <span>✨ Enter & Begin the Journey 🪔</span>
+      </button>
+      <span class="intro-audio-hint">🔊 Best experienced with sound & touch</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/diyas.js"></script>
+  <script src="js/rangoli.js"></script>
+  <script src="js/sweets.js"></script>
+  <script src="js/crackers.js"></script>
+  <script src="js/card.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
